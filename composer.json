@@ -1,0 +1,13 @@
+{
+    "name": "quasilyte/kphpunit",
+    "description": "KPHP polyfill-like package for the PHPUnit",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Iskander Sharipov",
+            "email": "quasilyte@gmail.com"
+        }
+    ],
+    "require": {}
+}
