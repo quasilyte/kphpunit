@@ -8,7 +8,7 @@ Everything you need to know about this package:
 
 1. It tries to mimic the `PHPUnit` API where possible, so you don't need a `kphpunit` API reference; it's the same
 
-2. You install it to your `[K]PHP` project to have an ability to run KPHP tests. Note that you can do it for `dev`-only `composer` dependency (`composer require --dev`).
+2. You install it to your `[K]PHP` project to have an ability to run KPHP tests.
 
 3. You never directly use it on your own. It's inserted into the instrumented code produced by the `ktest` code generator.
 
