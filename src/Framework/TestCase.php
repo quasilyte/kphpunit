@@ -137,7 +137,7 @@ class TestCase {
      * @param mixed $actual
      * @param string $message
      */
-    public function assertEqualsWithLine(int $line, $expected, $actual, string $message = '') {
+    public function assertNotEqualsWithLine(int $line, $expected, $actual, string $message = '') {
         if (!TestCase::checkEquals($expected, $actual)) {
             TestCase::ok();
         } else {
