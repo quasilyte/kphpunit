@@ -195,7 +195,7 @@ class TestCase {
         } else if (TestCase::compareAsEqualStrings($expected, $actual)) {
             return TestCase::stringEqual($expected, $actual);
         }
-        return false;
+        return $expected == $actual;
     }
 
     /**
