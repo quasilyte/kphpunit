@@ -115,20 +115,33 @@ class TestCase {
      * @param string $message
      */
     public function assertEqualsWithLine(int $line, $expected, $actual, string $message = '') {
-        // TODO: array comparator.
-        $result = false;
-        if (TestCase::compareAsEqualNumeric($expected, $actual)) {
-            $result = TestCase::numericEqual($expected, $actual);
-        } else if (TestCase::compareAsEqualDoubles($expected, $actual)) {
-            $result = TestCase::doubleEqual($expected, $actual);
-        } else if (TestCase::compareAsEqualStrings($expected, $actual)) {
-            $result = TestCase::stringEqual($expected, $actual);
-        }
-
-        if ($result) {
+        if (TestCase::checkEquals($expected, $actual)) {
             TestCase::ok();
         } else {
             TestCase::fail('EQUALS', $expected, $actual, $message, $line);
+        }
+    }
+
+    /**
+     * @param mixed $expected
+     * @param mixed $actual
+     * @param string $message
+     */
+    public function assertNotEquals($expected, $actual, string $message = '') {
+        TestCase::assertNotEqualsWithLine(0, $expected, $actual, $message);
+    }
+
+    /**
+     * @param int $line
+     * @param mixed $expected
+     * @param mixed $actual
+     * @param string $message
+     */
+    public function assertEqualsWithLine(int $line, $expected, $actual, string $message = '') {
+        if (!TestCase::checkEquals($expected, $actual)) {
+            TestCase::ok();
+        } else {
+            TestCase::fail('NOT_EQUALS', $expected, $actual, $message, $line);
         }
     }
 
@@ -167,6 +180,22 @@ class TestCase {
 
     private static function doubleEqual($expected, $actual): bool {
         return abs($expected - $actual) < TestCase::EPSILON;
+    }
+
+    /**
+     * @param mixed $expected
+     * @param mixed $actual
+     */
+    private static function checkEquals($expected, $actual): bool {
+        // TODO: array comparator.
+        if (TestCase::compareAsEqualNumeric($expected, $actual)) {
+            return TestCase::numericEqual($expected, $actual);
+        } else if (TestCase::compareAsEqualDoubles($expected, $actual)) {
+            return TestCase::doubleEqual($expected, $actual);
+        } else if (TestCase::compareAsEqualStrings($expected, $actual)) {
+            return TestCase::stringEqual($expected, $actual);
+        }
+        return false;
     }
 
     /**
